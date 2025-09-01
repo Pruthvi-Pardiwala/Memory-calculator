@@ -43,7 +43,6 @@ public:
             cout << "No students available." << endl;
             return;
         }
-
         cout << endl
              << "List of Students: " << endl;
         for (size_t i = 0; i < students.size(); i++)
@@ -54,23 +53,18 @@ public:
 
     void removeStudent(int id)
     {
-        int index = -1;
-
-        for (size_t i = 0; i < students.size(); ++i)
+        bool found = false;
+        for (auto it = students.begin(); it != students.end(); ++it)
         {
-            if (students[i].getId() == id)
+            if (it->getId() == id)
             {
-                index = static_cast<int>(i);
+                students.erase(it);
+                cout << "Student with ID " << id << " removed." << endl;
+                found = true;
                 break;
             }
         }
-
-        if (index != -1)
-        {
-            students.erase(students.begin() + index);
-            cout << "Student with ID " << id << " removed." << endl;
-        }
-        else
+        if (!found)
         {
             cout << "Student with ID " << id << " not found." << endl;
         }
@@ -78,23 +72,18 @@ public:
 
     void searchStudent(int id)
     {
-        int index = -1;
-
-        for (size_t i = 0; i < students.size(); ++i)
+        bool found = false;
+        for (size_t i = 0; i < students.size(); i++)
         {
             if (students[i].getId() == id)
             {
-                index = static_cast<int>(i);
+                cout << "Student Found: ";
+                students[i].display();
+                found = true;
                 break;
             }
         }
-
-        if (index != -1)
-        {
-            cout << "Student Found: ";
-            students[index].display();
-        }
-        else
+        if (!found)
         {
             cout << "Student with ID " << id << " not found." << endl;
         }
@@ -129,7 +118,7 @@ int main()
             sm.addStudent(id, name);
             break;
         case 2:
-            sm.displayAll();
+            sm.displayAll();    
             break;
         case 3:
             cout << "Enter ID to remove: ";
@@ -151,3 +140,89 @@ int main()
 
     return 0;
 }
+
+// output
+
+
+// --- Student Management System ---
+// 1. Add Student
+// 2. Display All Students
+// 3. Remove Student by ID
+// 4. Search Student by ID
+// 0. Exit
+// Enter your choice: 1
+// Enter ID: 1
+// Enter Name: po
+
+// --- Student Management System ---
+// 1. Add Student
+// 2. Display All Students
+// 3. Remove Student by ID
+// 4. Search Student by ID
+// 0. Exit
+// Enter your choice: 1
+// Enter ID: 2
+// Enter Name: ko
+
+// --- Student Management System ---
+// 1. Add Student
+// 2. Display All Students
+// 3. Remove Student by ID
+// 4. Search Student by ID
+// 0. Exit
+// Enter your choice: 1
+// Enter ID: 3
+// Enter Name: lo
+
+// --- Student Management System ---
+// 1. Add Student
+// 2. Display All Students
+// 3. Remove Student by ID
+// 4. Search Student by ID
+// 0. Exit
+// Enter your choice: 2
+
+// List of Students: 
+// ID: 1 | Name: po
+// ID: 2 | Name: ko
+// ID: 3 | Name: lo
+
+// --- Student Management System ---
+// 1. Add Student
+// 2. Display All Students
+// 3. Remove Student by ID
+// 4. Search Student by ID
+// 0. Exit
+// Enter your choice: 4
+// Enter ID to search: 3
+// Student Found: ID: 3 | Name: lo
+
+// --- Student Management System ---
+// 1. Add Student
+// 2. Display All Students
+// 3. Remove Student by ID
+// 4. Search Student by ID
+// 0. Exit
+// Enter your choice: 3
+// Enter ID to remove: 3
+// Student with ID 3 removed.
+
+// --- Student Management System ---
+// 1. Add Student
+// 2. Display All Students
+// 3. Remove Student by ID
+// 4. Search Student by ID
+// 0. Exit
+// Enter your choice: 2
+
+// List of Students: 
+// ID: 1 | Name: po
+// ID: 2 | Name: ko
+
+// --- Student Management System ---
+// 1. Add Student
+// 2. Display All Students
+// 3. Remove Student by ID
+// 4. Search Student by ID
+// 0. Exit
+// Enter your choice: 
